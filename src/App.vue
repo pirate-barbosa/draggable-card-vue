@@ -3,13 +3,22 @@
     id="app"
     class="min-h-screen w-screen flex justify-center items-center bg-gray-200"
   >
-    <section class="w-full max-w-md">
+    <draggable
+      :list="users"
+      :animation="200"
+      ghost-class="moving-card"
+      group="users"
+      filter=".action-button"
+      class="w-full max-w-xs"
+      tag="ul"
+    >
       <card v-for="user in users" :key="user.id" :user="user"></card>
-    </section>
+    </draggable>
   </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable';
 import card from './components/Card';
 const users = [
   {
@@ -49,12 +58,16 @@ export default {
     };
   },
   components: {
+    draggable,
     card
   }
 };
 </script>
 
 <style lang="scss">
-#app {
+.moving-card {
+  opacity: 0.5;
+  background: #f7fafc;
+  border: 1px solid #4299e1;
 }
 </style>
